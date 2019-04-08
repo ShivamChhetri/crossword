@@ -51,9 +51,11 @@ if(posn<=point && ((eqn[eqnIndex].length-posn)<=(x[ordinate].length-point))){
 function setup(start,eqxn,xabscissa,yordinate){
     for(let i=start;i<start+5;i++){
         if(xabscissa===null){
-            x[yordinate][i]=eqxn[i-start];
+            if(x[yordinate][i]!=null || yordinate==i) //new line
+                x[yordinate][i]=eqxn[i-start];
         }
         if(yordinate===null){
+            if(x[xabscissa][i]!=null || xabscissa==i) //new lines
             x[i][xabscissa]=eqxn[i-start];
         }    
     }
@@ -94,6 +96,7 @@ function nextEqn(start,newEqn,xabscissa,yordinate){
                                     setup(point-posn,newEqn,abscissa,ordinate);
                                     if(eqnIndex<eqn.length-1){
                                         eqnIndex++;
+                                        console.log(eqnIndex);
                                         nextEqn(point-posn,eqn[eqnIndex],abscissa,ordinate);
                                     }
                                     break loop1;
